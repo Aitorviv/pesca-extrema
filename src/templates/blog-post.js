@@ -1,59 +1,43 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import seo from "../components/seo"
+import Seo from "../components/seo"   // ← ESTA LÍNEA ES LA QUE FALTABA
 
-const BlogPost = ({ data }) => {
+export default function BlogPost({ data }) {
   const post = data.markdownRemark
+  const title = post.frontmatter.title
 
   return (
     <Layout>
-      <Seo title={post.frontmatter.title} />
-
-      <article style={{ maxWidth: 900, margin: "0 auto", padding: "2rem" }}>
-        <h1 style={{ fontSize: "3rem", marginBottom: "0.5rem", textAlign: "center" }}>
-          {post.frontmatter.title}
+      <Seo title={title} description={post.excerpt} />
+      <div style={{ margin: "4rem 0" }}>
+        <h1 style={{ fontSize: "3.5rem", textAlign: "center", marginBottom: "1rem" }}>
+          {title}
         </h1>
-        <p style={{ textAlign: "center", color: "#b3e5fc", fontSize: "1.2rem", marginBottom: "3rem" }}>
-          {post.frontmatter.date}
-        </p>
-
-        {/* IMÁGENES CON TAMAÑO ADECUADO */}
-        <div 
-          dangerouslySetInnerHTML={{ __html: post.html }} 
-          style={{ 
-            fontSize: "1.25rem", 
-            lineHeight: "2",
-            textAlign: "justify"
+        <div
+          style={{
+            fontSize: "1.3rem",
+            lineHeight: "2.2",
+            textAlign: "justify",
+            marginTop: "3rem",
           }}
+          dangerouslySetInnerHTML={{ __html: post.html }}
         />
-
-        <div style={{ textAlign: "center", marginTop: "4rem" }}>
-          <a href="/blog" style={{ 
-            color: "#ec4899", 
-            fontWeight: "bold", 
-            fontSize: "1.4rem",
-            textDecoration: "none"
-          }}>
-            ← VOLVER AL BLOG
-          </a>
-        </div>
-      </article>
+      </div>
     </Layout>
   )
 }
-
-export default BlogPost
 
 export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      excerpt(pruneLength: 160)
       frontmatter {
         title
-        date(formatString: "DD MMMM, YYYY")
       }
     }
   }
+`
 `
 
