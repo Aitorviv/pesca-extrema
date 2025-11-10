@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import Seo from "../components/seo"   // ← IMPORT CORRECTO
+import Seo from "../components/seo"
 
 export default function BlogPost({ data }) {
   const post = data.markdownRemark
@@ -10,7 +10,6 @@ export default function BlogPost({ data }) {
   return (
     <Layout>
       <Seo title={title} description={post.excerpt} />
-
       <article style={{ margin: "4rem 0" }}>
         <h1 style={{ 
           fontSize: "3.8rem", 
@@ -20,7 +19,6 @@ export default function BlogPost({ data }) {
         }}>
           {title}
         </h1>
-
         <div
           style={{
             fontSize: "1.35rem",
@@ -36,7 +34,6 @@ export default function BlogPost({ data }) {
   )
 }
 
-// ← ESTA QUERY ESTÁ PERFECTA (Gatsby la parsea sin problemas)
 export const query = graphql`
   query BlogPostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
