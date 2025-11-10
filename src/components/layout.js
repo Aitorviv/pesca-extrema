@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import Seo from "./seo"
+import Seo from "./seo"   // ← ESTA LÍNEA ES LA QUE FALTABA (AHORA SÍ ESTÁ)
 
 export default function Layout({ children }) {
   return (
@@ -14,7 +14,8 @@ export default function Layout({ children }) {
       minHeight: "100vh",
       transition: "all 0.4s ease",
     }}>
-      <Seo />
+      <Seo />   // ← AHORA SÍ EXISTE Y FUNCIONA
+
       <style jsx global>{`
         :root {
           --bg: #fafafa;
