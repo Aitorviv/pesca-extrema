@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import Seo from "./seo"
 
 export default function Layout({ children }) {
   return (
@@ -13,6 +14,7 @@ export default function Layout({ children }) {
       minHeight: "100vh",
       transition: "all 0.4s ease",
     }}>
+      <Seo />
       <style jsx global>{`
         :root {
           --bg: #fafafa;
@@ -35,7 +37,7 @@ export default function Layout({ children }) {
         a { color: #63b3ed !important; }
         a:hover { color: #ec4899 !important; text-decoration: underline !important; }
 
-        img, .gatsby-resp-image-wrapper, iframe {
+        img, .gatsby-resp-image-wrapper {
           max-width: 800px !important;
           width: 100% !important;
           height: auto !important;
@@ -45,9 +47,25 @@ export default function Layout({ children }) {
           box-shadow: 0 50px 100px rgba(0,0,0,0.8) !important;
           border: 12px solid white !important;
         }
+
         iframe {
-          aspect-ratio: 16 / 9;
-          height: 450px !important;
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          max-width: 800px !important;
+          width: 100% !important;
+          margin: 3rem auto !important;
+          display: block !important;
+          border-radius: 32px !important;
+          box-shadow: 0 50px 100px rgba(0,0,0,0.8) !important;
+          border: 12px solid white !important;
+        }
+        iframe {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%;
+          height: 100%;
         }
       `}</style>
 
