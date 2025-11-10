@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import Seo from "../components/Seo"
+import seo from "../components/seo"
 
 const Blog = ({ data }) => {
   return (
